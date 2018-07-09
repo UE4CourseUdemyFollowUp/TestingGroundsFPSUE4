@@ -23,12 +23,6 @@ EBTNodeResult::Type UTaskChooseWaypoint::ExecuteTask(UBehaviorTreeComponent& Own
 	}
 	auto PatrolPoints = PatrolRouteComp->GetPatrolPoints();
 
-	if (PatrolPoints.Num() == 0)
-	{
-		UE_LOG(LogTemp, Error, TEXT("Patrol route is empty"));
-		return EBTNodeResult::Failed;
-	}
-
 
 	auto BlackboardComp = OwnerComp.GetBlackboardComponent();
 	auto Index = BlackboardComp->GetValueAsInt(IndexKey.SelectedKeyName);
