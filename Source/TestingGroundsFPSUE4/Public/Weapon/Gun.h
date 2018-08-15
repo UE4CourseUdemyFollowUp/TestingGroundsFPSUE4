@@ -38,7 +38,10 @@ public:
 	void OnFire();
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	class UAnimInstance* AnimInstance;
+	class UAnimInstance* AnimInstance1P;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	class UAnimInstance* AnimInstance3P;
 
 protected:
 
@@ -48,7 +51,10 @@ protected:
 
 	/** AnimMontage to play each time we fire */
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
-	class UAnimMontage* FireAnimation;
+	class UAnimMontage* FireAnimation1P;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Gameplay)
+	class UAnimMontage* FireAnimation3P;
 
 	
 
