@@ -80,11 +80,17 @@ void AMannequin::UnPossessed()
 {
 	Super::UnPossessed();
 
-	Gun->AttachToComponent(Mesh1P, FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
+	if (Gun != nullptr)
+	{
+		Gun->AttachToComponent(GetMesh(), FAttachmentTransformRules(EAttachmentRule::SnapToTarget, true), TEXT("GripPoint"));
+	}
 }
 
 void AMannequin::PullTrigger()
 {
-	Gun->OnFire();
+	if (Gun != nullptr)
+	{
+		Gun->OnFire();
+	}
 }
 
