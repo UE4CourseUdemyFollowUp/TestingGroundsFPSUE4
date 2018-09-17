@@ -8,6 +8,17 @@
 
 class UActorPoolComponent;
 
+USTRUCT()
+struct FSpawnPosition
+{
+	GENERATED_USTRUCT_BODY()
+
+	FVector Location;
+	float Rotation;
+	float Scale;
+};
+
+
 UCLASS()
 class TESTINGGROUNDSFPSUE4_API ATile : public AActor
 {
@@ -38,7 +49,6 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void PlaceActors(TSubclassOf<AActor> ToSpawn, const int MinSpawn, const int MaxSpawn, const float Radius, float MinScale = 1.f, float MaxScale = 1.f);
 
-
 	UFUNCTION(BlueprintCallable, Category = "Pool")
 	void SetActorsPool(UActorPoolComponent* ActorPool);
 
@@ -46,11 +56,13 @@ private:
 
 	void PositionNavMeshBoundsVolume();
 
-	const bool FindEmptyLocation(FVector& OutLocation, float Radius);
+	TArray<FSpawnPosition> GenerateSpawnPositions(const int MinSpawn, const int MaxSpawn, const float &MinScale, const float &MaxScale, const float &Radius) const;
 
-	void PlaceActor(TSubclassOf<AActor> ToSpawn, const FVector SpawnPoint, float Rotation, float Scale);
+	const bool FindEmptyLocation(FVector& OutLocation, float Radius) const;
 
-	const bool CanSpawnAtLocation(const FVector& Location, const float Radius);
+	void PlaceActor(TSubclassOf<AActor> ToSpawn, const FSpawnPosition& SpawnPosition);
+
+	const bool CanSpawnAtLocation(const FVector& Location, const float Radius) const;
 
 	UActorPoolComponent* NavMeshVolumePoolComp;	
 
