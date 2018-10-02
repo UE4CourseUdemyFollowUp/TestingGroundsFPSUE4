@@ -49,6 +49,9 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Setup")
 	void PlaceActors(TSubclassOf<AActor> ToSpawn, const int MinSpawn, const int MaxSpawn, const float Radius, float MinScale = 1.f, float MaxScale = 1.f);
 
+	UFUNCTION(BlueprintCallable, Category = "Setup")
+	void PlaceAIActors(TSubclassOf<APawn> ToSpawn, const int MinSpawn, const int MaxSpawn, const float Radius);
+
 	UFUNCTION(BlueprintCallable, Category = "Pool")
 	void SetActorsPool(UActorPoolComponent* ActorPool);
 
@@ -56,11 +59,16 @@ private:
 
 	void PositionNavMeshBoundsVolume();
 
-	TArray<FSpawnPosition> GenerateSpawnPositions(const int MinSpawn, const int MaxSpawn, const float &MinScale, const float &MaxScale, const float &Radius) const;
+	TArray<FSpawnPosition> GenerateSpawnPositions(const int MinSpawn, const int MaxSpawn, const float &MinScale, const float &MaxScale, const float &Radius);
 
-	const bool FindEmptyLocation(FVector& OutLocation, float Radius) const;
+	const bool FindEmptyLocation(FVector& OutLocation, float Radius);
 
-	void PlaceActor(TSubclassOf<AActor> ToSpawn, const FSpawnPosition& SpawnPosition);
+	template<class T>
+	void RandomlyPlaceActors(TSubclassOf<T> ToSpawn, int MinSpawn = 1, int MaxSpawn = 1, const float& Radius = 500.f, const float& MinScale = 1.f, const float& MaxScale = 1.f);
+
+	void PlaceActor(TSubclassOf<AActor> ToSpawn, const FSpawnPosition SpawnPosition);
+
+	void PlaceActor(TSubclassOf<APawn> ToSpawn, const FSpawnPosition SpawnPosition);
 
 	const bool CanSpawnAtLocation(const FVector& Location, const float Radius) const;
 
