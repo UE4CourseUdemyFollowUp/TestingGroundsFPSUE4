@@ -66,6 +66,7 @@ private:
 	template<class T>
 	void RandomlyPlaceActors(TSubclassOf<T> ToSpawn, int MinSpawn = 1, int MaxSpawn = 1, const float& Radius = 500.f, const float& MinScale = 1.f, const float& MaxScale = 1.f);
 
+	// Pass controller class?
 	void PlaceActor(TSubclassOf<AActor> ToSpawn, const FSpawnPosition SpawnPosition);
 
 	void PlaceActor(TSubclassOf<APawn> ToSpawn, const FSpawnPosition SpawnPosition);
